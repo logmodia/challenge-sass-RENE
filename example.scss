@@ -1,0 +1,130 @@
+@import "_myvariables.scss";
+
+@mixin boxshadow ($col) {
+    -webkit-box-shadow: 10px 10px 15px -4px $col;
+    -moz-box-shadow: 10px 10px 15px -4px $col;
+    box-shadow: 10px 10px 15px -4px $col;
+}
+
+$padd : 5px;
+
+body {
+    font: 100% "Space Mono", monospace;
+    color: #6b717f;
+    margin: 0;
+    padding: $padd;
+    background-color: $white-col;
+    overflow-x: hidden;
+}
+
+.main {
+    padding: 0 1em;
+}
+
+article {
+    display: flex;
+    flex-wrap: wrap;
+
+    section {
+        flex-grow: 1;
+        flex-basis: 45%;
+        border: 1px  solid $boxshadowcol;
+
+        @include boxshadow(black);
+  
+        padding: 16px;
+        margin: 16px;
+        clear: both;
+        overflow: auto;
+        box-sizing: border-box;
+
+        #selling-points {
+            flex-grow: 2;
+            flex-basis: 100%;
+        }
+    }
+
+    code {
+        background: #000;
+        border: 1px solid #6b717f;
+        color: #8C8C8C;
+        page-break-inside: avoid;
+        font-family: monospace;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 1.6em;
+        max-width: 100%;
+        overflow: auto;
+        padding: 1em 1.5em;
+        display: block;
+        word-wrap: break-word;
+
+        .before {
+            float: left;
+            width: 40%;
+        }
+
+        .after {
+            float: right;
+            width: 40%;
+        }
+        
+    }
+}
+
+%colh1_3 {
+    color: $colorh1_3;
+}
+
+h2 {
+    @extend %colh1_3;
+}
+
+h1 {
+    text-align: center;
+    @extend %colh1_3;   
+}
+
+h3 {
+    text-align: center;
+    font-size: 1.5em;
+    padding: $padd*2;
+    margin-bottom: 0px;
+    @extend %colh1_3;
+}
+
+.messages {
+    padding: 16px;
+}
+
+
+%bordpadcol_messages {
+    border: 1px solid $colorhmessages;
+    padding: 16px;
+    color: $white-col;
+}
+
+.success {
+    @extend %bordpadcol_messages;
+    background-color: $greencol;
+}
+
+.error {
+    @extend %bordpadcol_messages;
+    background-color: $redcol;
+    &:hover {
+        background-color: $greencol;
+    }
+}
+
+.warning {
+    @extend %bordpadcol_messages;
+    background-color:$orangecol;
+}
+
+@for $i from 1 through 6 {
+    li:nth-child(1n + #{$i}) {
+      background-color: lighten(rgb(235, 238, 79), $i * 5%);
+    }
+  }
+  
